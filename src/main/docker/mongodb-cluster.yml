@@ -1,0 +1,16 @@
+version: '2'
+services:
+  brand-mongodb:
+    image: mongo
+    ports:
+      - '27017:27017'
+    command: mongos --configdb csvr/brand-mongodb-config --bind_ip 0.0.0.0
+  brand-mongodb-node:
+    build:
+      context: .
+      dockerfile: mongodb/MongoDB.Dockerfile
+    command: mongod --shardsvr --replSet rs1
+  brand-mongodb-config:
+    image: mongo:4.2.7
+    container_name: brand-mongodb-config
+    command: mongod --configsvr --dbpath /data/db --replSet csvr
