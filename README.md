@@ -1,4 +1,4 @@
-# Brand API
+# Products API
 
 ## Development
 Install Mongodb Database in your Machin or Start moongodb container using this command
